@@ -2,7 +2,7 @@ import psycopg2
 
 
 def logic(v):
-    sql = """INSERT INTO value_table VALUES (%s) RETURNING id"""
+    sql = """INSERT INTO value_table (value) VALUES (%s) RETURNING id"""
     conn = None
     try:
         conn = psycopg2.connect(
@@ -12,7 +12,7 @@ def logic(v):
             password="mcep"
         )
         cur = conn.cursor()
-        cur.execute(sql, v["x"])
+        cur.execute(sql, (v["x"],))
         value_id = cur.fetchone()[0]
         conn.commit()
         cur.close()
