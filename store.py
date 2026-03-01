@@ -1,10 +1,10 @@
-import pg8000
+import psycopg2
 
 def logic(v):
     sql = "INSERT INTO value_table (value) VALUES (%s) RETURNING id"
     conn = None
     try:
-        conn = pg8000.connect(
+        conn = psycopg2.connect(
             host="localhost",
             database="mcep",
             user="mcep",
